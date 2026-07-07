@@ -1,0 +1,13 @@
+{
+  "name": "functions",
+  "private": true,
+  "engines": {
+    "node": "20"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.32.1",
+    "express": "^4.19.2",
+    "firebase-functions": "^5.1.1"
+  }
+}

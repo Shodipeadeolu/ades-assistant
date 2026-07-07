@@ -2,6 +2,9 @@
 
 A personal AI assistant PWA — installable on phone and desktop. Single Node.js/Express app, no database. `persona.md` is the assistant's system prompt.
 
+**Live:** https://ades-assistant.web.app
+**Source:** https://github.com/Shodipeadeolu/ades-assistant
+
 ## Get an Anthropic API key
 1. Go to https://console.anthropic.com
 2. Sign up / log in, add billing, then create an API key under **API Keys**.
@@ -57,6 +60,19 @@ assistant.yourdomain.com {
 }
 ```
 Caddy handles the TLS certificate automatically. HTTPS is required for the PWA install prompt and service worker on real devices.
+
+### Firebase (what this repo is actually deployed to)
+Firebase Hosting only serves static files, so the API runs as a Cloud Function (`functions/`) behind a Hosting rewrite (`/api/**` → the `api` function). `firebase.json`'s `predeploy` hook copies the root `persona.md` into `functions/` on every deploy, so **edit `persona.md` at the project root only** — never edit `functions/persona.md` directly, it's overwritten on deploy.
+
+Requires the Blaze (pay-as-you-go) plan — the free Spark plan blocks Cloud Functions from calling external APIs like Anthropic's.
+
+```
+npm install --prefix functions
+firebase functions:secrets:set ANTHROPIC_API_KEY --project ades-assistant
+firebase functions:secrets:set APP_PASSWORD --project ades-assistant
+firebase deploy --project ades-assistant
+```
+To change the password or API key later, rerun the relevant `secrets:set` command and redeploy (`firebase deploy --only functions --project ades-assistant`).
 
 ## Installing the PWA
 - **iPhone (Safari)**: open the site → Share icon → "Add to Home Screen".
