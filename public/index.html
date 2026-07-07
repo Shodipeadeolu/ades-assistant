@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Ade's Assistant</title>
+    <meta name="theme-color" content="#111318" />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Ade's Assistant" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div id="gate" class="gate">
+      <form id="gate-form" class="gate-card">
+        <h1>Ade's Assistant</h1>
+        <p class="gate-sub">Enter the app password</p>
+        <input id="gate-password" type="password" autocomplete="current-password" placeholder="Password" required />
+        <button type="submit">Unlock</button>
+        <p id="gate-error" class="gate-error" hidden></p>
+      </form>
+    </div>
+
+    <div id="app" class="app" hidden>
+      <header class="app-header">
+        <div>
+          <h1>Ade's Assistant</h1>
+          <p class="subtitle">Finance &amp; data, on call</p>
+        </div>
+        <button id="new-chat" class="ghost-btn" type="button">New chat</button>
+      </header>
+
+      <main id="chat" class="chat">
+        <div id="empty-state" class="empty-state">Ask about close sequencing, a variance, a draft email — anything.</div>
+      </main>
+
+      <footer class="composer">
+        <textarea id="input" placeholder="Message Ade's assistant…" rows="1"></textarea>
+        <button id="send" type="button">Send</button>
+      </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="/app.js"></script>
+  </body>
+</html>
